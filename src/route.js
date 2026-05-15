@@ -8,70 +8,74 @@
  * <x-route path="*"> = match if no other route matches within the same parent node
  */
 export class RouteComponent extends HTMLElement {
+  constructor() {
+    super();
+    this.update = this.update.bind(this);
+    this.style.display = 'contents';
+  }
 
-    constructor() {
-        super();
-        this.update = this.update.bind(this);
-        this.style.display = 'contents';
+  #isActive = false;
+
+  get isActive() {
+    return this.#isActive;
+  }
+
+  connectedCallback() {
+    this.classList.toggle('route', true);
+    window.addEventListener('hashchange', this.update);
+    this.update();
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('hashchange', this.update);
+  }
+
+  static get observedAttributes() {
+    return ['path', 'exact'];
+  }
+
+  attributeChangedCallback() {
+    this.update();
+  }
+
+  update() {
+    const path = this.getAttribute('path') || '';
+    const exact = this.hasAttribute('exact');
+    const matches = this.#matchesRoute(path, exact);
+    this.#isActive = !!matches;
+    this.setIsActive(this.#isActive);
+    this.routeChangedCallback.apply(this, matches ? matches.slice() : []);
+  }
+
+  // can be overridden in subclasses to change show/hide method
+  setIsActive(active) {
+    this.style.display = active ? 'contents' : 'none';
+  }
+
+  // for overriding in subclasses to detect parameters
+  // eslint-disable-next-line no-unused-vars
+  routeChangedCallback(...matches) {}
+
+  #matchesRoute(path, exact) {
+    let matches;
+    // '*' triggers fallback route if no other route matches
+    if (path === '*') {
+      const activeRoutes = Array.from(
+        this.parentNode.querySelectorAll('.route')
+      ).filter((_) => _.isActive);
+      if (!activeRoutes.length) matches = ['*'];
+      // normal routes
+    } else {
+      const regex = new RegExp(
+        `^#${path.replaceAll('/', '\\/')}${exact ? '$' : ''}`,
+        'gi'
+      );
+      const currentPath = window.location.hash || '#/';
+      matches = regex.exec(currentPath);
     }
-
-    #isActive = false;
-
-    get isActive() {
-        return this.#isActive;
-    }
-
-    connectedCallback() {
-        this.classList.toggle('route', true);
-        window.addEventListener('hashchange', this.update);
-        this.update();
-    }
-
-    disconnectedCallback() {
-        window.removeEventListener('hashchange', this.update);        
-    }
-
-    static get observedAttributes() {
-        return ['path', 'exact'];
-    }
-
-    attributeChangedCallback() {
-        this.update();
-    }
-
-    update() {
-        const path = this.getAttribute('path') || '';
-        const exact = this.hasAttribute('exact');
-        const matches = this.#matchesRoute(path, exact);
-        this.#isActive = !!matches;
-        this.setIsActive(this.#isActive);
-        this.routeChangedCallback.apply(this, matches ? matches.slice() : []);
-    }
-
-    // can be overridden in subclasses to change show/hide method
-    setIsActive(active) {
-        this.style.display = active ? 'contents' : 'none';
-    }
-
-    // for overriding in subclasses to detect parameters
-    // eslint-disable-next-line no-unused-vars
-    routeChangedCallback(...matches) {}
-
-    #matchesRoute(path, exact) {
-        let matches;
-        // '*' triggers fallback route if no other route matches
-        if (path === '*') {
-            const activeRoutes = 
-                Array.from(this.parentNode.querySelectorAll('.route')).filter(_ => _.isActive);
-            if (!activeRoutes.length) matches = ['*'];
-        // normal routes
-        } else {
-            const regex = new RegExp(`^#${path.replaceAll('/', '\\/')}${exact ? '$' : ''}`, 'gi');
-            const currentPath = window.location.hash || '#/';
-            matches = regex.exec(currentPath);
-        }
-        return matches;
-    }
+    return matches;
+  }
 }
 
-export const registerRouteComponent = () => customElements.define('x-route', RouteComponent);
+export const registerRouteComponent = () =>
+  customElements.define('x-route', RouteComponent);

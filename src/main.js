@@ -1,12 +1,11 @@
-import { registerApp } from "./app.js";
-import { registerRouteComponent } from "./route.js";
+import { registerApp } from './app.js';
+import { registerAvatar } from './components/avatar.js';
+import { registerBadge } from './components/badge.js';
 
 const app = () => {
-    registerRouteComponent();
-    registerApp();
+  registerApp();
+  registerAvatar();
+  registerBadge();
+};
 
-    const template = document.querySelector('template#root');
-    if (template) document.body.appendChild(template.content, true);
-}
-
-document.addEventListener('DOMContentLoaded', app)
+document.addEventListener('DOMContentLoaded', app);
