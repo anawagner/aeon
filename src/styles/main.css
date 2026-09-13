@@ -8,13 +8,14 @@ body {
 #app {
   display: flex;
   padding: 1rem;
+  gap: 1rem;
   min-height: 100dvh;
 }
 
 main {
   flex: 1;
   background-color: var(--content-bg);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   padding: 1.5rem;
 }
 

@@ -9,6 +9,26 @@ const navItem = (name, component, icon) => {
   return { name, uri: getUri(name), component, icon };
 };
 
+const menuItem = (parent, item, index) => {
+  const li = document.createElement('li');
+  li.id = index;
+
+  const icon = document.createElement('img');
+  icon.src = item.icon;
+
+  const a = document.createElement('a');
+  a.href = item.uri;
+  a.id = index;
+
+  const label = document.createElement('span');
+  label.textContent = item.name;
+
+  li.appendChild(icon);
+  li.appendChild(label);
+  a.appendChild(li);
+  parent.appendChild(a);
+};
+
 const NavigationComponent = (navItems) => {
   const nav = document.createElement('nav');
   nav.classList.add('site-nav');
@@ -16,23 +36,7 @@ const NavigationComponent = (navItems) => {
   const ul = document.createElement('ul');
 
   navItems.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.id = index;
-
-    const icon = document.createElement('img');
-    icon.src = item.icon;
-
-    const a = document.createElement('a');
-    a.href = item.uri;
-    a.id = index;
-
-    const label = document.createElement('span');
-    label.textContent = item.name;
-
-    li.appendChild(icon);
-    li.appendChild(label);
-    a.appendChild(li);
-    ul.appendChild(a);
+    menuItem(ul, item, index);
   });
 
   nav.appendChild(ul);

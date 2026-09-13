@@ -1,0 +1,8 @@
+.task-main {
+  display: flex;
+  gap: 2rem;
+}
+
+.task-title {
+  font-weight: bold;
+}

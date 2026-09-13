@@ -111,6 +111,11 @@ const getTasks = () => {
   return tasks ? JSON.parse(tasks) : [];
 };
 
+const getTaskByProject = (projectId) => {
+  const allTasks = getTasks();
+  return allTasks.filter((task) => task.project == projectId);
+};
+
 const getTask = (id) => {
   const tasks = getTasks();
   return tasks.find((task) => task.id === id);
@@ -167,5 +172,6 @@ export {
   getTask,
   updateTask,
   deleteTask,
-  initializeData
+  initializeData,
+  getTaskByProject
 };
