@@ -1,0 +1,27 @@
+[
+  {
+    "id": "heros-journey",
+    "name": "Hero's Journey",
+    "description": "A project to track the hero's journey"
+  },
+  {
+    "id": "default",
+    "name": "Default Project",
+    "description": "The default project for tasks"
+  },
+  {
+    "id": "personal",
+    "name": "Personal",
+    "description": "A project for personal tasks"
+  },
+  {
+    "id": "health",
+    "name": "Health & Wellness",
+    "description": "A project for health and wellness tasks"
+  },
+  {
+    "id": "library",
+    "name": "Library",
+    "description": "Books to read and resources to explore"
+  }
+]

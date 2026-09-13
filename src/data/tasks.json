@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Landing Page Design",
+    "description": "create a landing page for the new product",
+    "dueDate": "2026-11-08",
+    "status": "to-do",
+    "priority": "high",
+    "project": "heros-journey"
+  },
+  {
+    "title": "Read The Odyssey",
+    "description": "read the book and take notes",
+    "dueDate": "2026-11-08",
+    "status": "doing",
+    "priority": "medium",
+    "project": "library"
+  },
+  {
+    "title": "Yoga",
+    "description": "practice yoga for 30 minutes",
+    "dueDate": "2026-11-08",
+    "status": "done",
+    "priority": "low",
+    "project": "health"
+  },
+  {
+    "title": "explore Aeon",
+    "description": "explore the Aeon app and its features",
+    "dueDate": "2026-11-08",
+    "status": "to-do",
+    "priority": "medium",
+    "project": "default"
+  }
+]
