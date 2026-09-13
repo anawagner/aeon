@@ -1,5 +1,6 @@
 import { HeaderComponent } from '../Header/header.js';
 import appText from '../../data/content.json';
+import './sidebar.css';
 
 const Sidebar = (nav) => {
   const sidebar = document.createElement('div');

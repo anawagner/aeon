@@ -1,0 +1,23 @@
+@import './reset.css';
+@import './global.css';
+
+body {
+  background-color: var(--theme-bg);
+}
+
+#app {
+  display: flex;
+  padding: 1rem;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+  background-color: var(--content-bg);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+
+.sidebar {
+  padding: 1.5rem;
+}

@@ -1,3 +1,17 @@
+nav ul {
+  padding: 0;
+}
+nav ul a {
+  text-decoration: none;
+  color: inherit;
+}
+nav ul li a:visited {
+  color: inherit;
+}
+nav ul li {
+  list-style: none;
+}
+
 /*  https://www.joshwcomeau.com/css/custom-css-reset/ */
 /*
   1. Use a more-intuitive box-sizing model.

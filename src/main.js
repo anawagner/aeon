@@ -6,14 +6,17 @@ import { Sidebar } from './components/Sidebar/sidebar.js';
 import { MyMissions } from './components/Missions/missions.js';
 import { Today } from './components/Today/today.js';
 import { Upcomming } from './components/Upcomming/upcomming.js';
+import questIcon from './assets/icons/personal-quest.svg';
+import sun from './assets/icons/sun.svg';
+import next from './assets/icons/calendar-check.svg';
 
 function main(root, initialHash) {
   initializeData(tasks, projects);
 
   const navItems = [
-    navItem('My Missions', MyMissions),
-    navItem('Today', Today),
-    navItem('Upcomming', Upcomming)
+    navItem('My Missions', MyMissions, questIcon),
+    navItem('Today', Today, sun),
+    navItem('Upcomming', Upcomming, next)
   ];
 
   // main layout Header, Navigation, Content
@@ -63,7 +66,7 @@ const loadHashToContent = (navItems, hash, content) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('body');
+  const root = document.querySelector('div#app');
   const initialHash = window.location.hash;
   main(root, initialHash);
 });
