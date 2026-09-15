@@ -1,4 +1,4 @@
-import { getTasks } from '../../api/data_manager';
+import { getTasks } from '../../api/taskApi.js';
 import { TaskList } from '../TaskList/taskList';
 
 const MyMissions = () => {

@@ -1,6 +1,6 @@
 import tasks from './data/tasks.json';
 import projects from './data/projects.json';
-import { initializeData } from './api/data_manager.js';
+import { initializeData } from './api/taskApi.js';
 import { NavigationComponent, navItem } from './components/Nav/navigation.js';
 import { Sidebar } from './components/Sidebar/sidebar.js';
 import { MyMissions } from './components/Missions/missions.js';

@@ -1,5 +1,6 @@
 /* color variables */
 html {
+  --theme-bg-dark: #282547;
   --theme-bg: #433d68;
   --content-bg: #ffffff;
 }

@@ -2,7 +2,11 @@
 @import './global.css';
 
 body {
-  background-color: var(--theme-bg);
+  background: linear-gradient(
+    180deg,
+    var(--theme-bg-dark) 0%,
+    var(--theme-bg) 100%
+  );
 }
 
 #app {
