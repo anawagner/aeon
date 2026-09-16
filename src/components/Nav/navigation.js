@@ -5,8 +5,8 @@ const getUri = (name) => {
   return `#${hashId}`;
 };
 
-const navItem = (name, component, icon) => {
-  return { name, uri: getUri(name), component, icon };
+const navItem = (name, rest) => {
+  return { name, uri: getUri(name), ...rest };
 };
 
 const menuItem = (parent, item, index) => {

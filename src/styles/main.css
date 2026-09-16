@@ -20,7 +20,7 @@ main {
   flex: 1;
   background-color: var(--content-bg);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .sidebar {

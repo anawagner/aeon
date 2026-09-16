@@ -21,7 +21,7 @@ const taskListHeader = () => {
   header.classList.add('task-list-header');
   header.classList.add('task-row');
 
-  addDiv('', 'Missions', header);
+  addDiv('', 'Mission', header);
   addDiv('', 'Due', header);
   addDiv('', 'Priority', header);
 

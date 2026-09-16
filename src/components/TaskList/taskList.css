@@ -2,6 +2,18 @@
   display: grid;
   grid-template-columns: 1fr 100px 100px;
   gap: 1rem;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--muted-color);
   padding: 1rem;
+}
+
+.task-list-header {
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--muted-color);
+  border-radius: 0.5rem;
 }

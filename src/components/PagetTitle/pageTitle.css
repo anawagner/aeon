@@ -1,0 +1,11 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}

@@ -2,5 +2,13 @@
 html {
   --theme-bg-dark: #282547;
   --theme-bg: #433d68;
-  --content-bg: #ffffff;
+  --content-bg: #f6f4f8;
+
+  --text-color: #1a1530;
+  --primary-color: #6e63a6;
+  --muted-color: #ebe5e5;
+
+  --error-color: #e67ca0;
+  --warning-color: #f5c16c;
+  --success-color: #6ac39a;
 }

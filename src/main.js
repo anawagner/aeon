@@ -3,9 +3,9 @@ import projects from './data/projects.json';
 import { initializeData } from './api/taskApi.js';
 import { NavigationComponent, navItem } from './components/Nav/navigation.js';
 import { Sidebar } from './components/Sidebar/sidebar.js';
-import { MyMissions } from './components/Missions/missions.js';
-import { Today } from './components/Today/today.js';
-import { Upcomming } from './components/Upcomming/upcomming.js';
+import { MyMissions, missionsParams } from './pages/Missions/missions.js';
+import { Today } from './pages/Today/today.js';
+import { Upcomming } from './pages/Upcomming/upcomming.js';
 import questIcon from './assets/icons/personal-quest.svg';
 import sun from './assets/icons/sun.svg';
 import next from './assets/icons/calendar-check.svg';
@@ -14,9 +14,13 @@ function main(root, initialHash) {
   initializeData(tasks, projects);
 
   const navItems = [
-    navItem('My Missions', MyMissions, questIcon),
-    navItem('Today', Today, sun),
-    navItem('Upcomming', Upcomming, next)
+    navItem('My Missions', {
+      component: MyMissions,
+      icon: questIcon,
+      pathParamFn: missionsParams
+    }),
+    navItem('Today', { component: Today, icon: sun }),
+    navItem('Upcomming', { component: Upcomming, icon: next })
   ];
 
   // main layout Header, Navigation, Content
@@ -32,16 +36,13 @@ function main(root, initialHash) {
 
   // handle navigation
   nav.addEventListener('click', (e) => {
-    console.log('nav click event: ', e.target.tagName, e.target.id);
     if (e.target.tagName !== 'A' && e.target.tagName !== 'LI') {
       return;
     }
-    console.log(e.target);
     const nav_id = e.target.id;
 
     contentElement.innerHTML = '';
     try {
-      console.log('nav_id: ', nav_id);
       contentElement.appendChild(navItems[nav_id].component());
     } catch (error) {
       console.error('click event listener error: ', error);
@@ -60,9 +61,18 @@ function main(root, initialHash) {
 }
 
 const loadHashToContent = (navItems, hash, content) => {
-  const nav_id = navItems.findIndex((item) => item.uri == hash);
+  const [path, param] = hash.split('/');
+
+  const nav_id = navItems.findIndex((item) => item.uri == path);
+  const item = navItems[nav_id];
   content.innerHTML = '';
-  content.appendChild(navItems[nav_id].component());
+
+  if (item.pathParamFn && param) {
+    const pathParam = item.pathParamFn(param);
+    content.appendChild(item.component(pathParam));
+  } else {
+    content.appendChild(item.component());
+  }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
