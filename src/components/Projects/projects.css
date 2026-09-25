@@ -1,5 +1,4 @@
-.project-navigation button {
-  border-radius: 2rem;
-  border: none;
-  background-color: none;
+.project-navigation {
+  display: flex;
+  gap: 1rem;
 }

@@ -5,7 +5,7 @@
     "dueDate": "2026-11-08",
     "status": "to-do",
     "priority": "high",
-    "project": "heros-journey"
+    "projectID": "hero-s-journey"
   },
   {
     "title": "Read The Odyssey",
@@ -13,7 +13,7 @@
     "dueDate": "2026-11-08",
     "status": "doing",
     "priority": "medium",
-    "project": "library"
+    "projectID": "library"
   },
   {
     "title": "Yoga",
@@ -21,14 +21,13 @@
     "dueDate": "2026-11-08",
     "status": "done",
     "priority": "low",
-    "project": "health"
+    "projectID": "health---wellness"
   },
   {
     "title": "explore Aeon",
     "description": "explore the Aeon app and its features",
     "dueDate": "2026-11-08",
     "status": "to-do",
-    "priority": "medium",
-    "project": "default"
+    "priority": "medium"
   }
 ]

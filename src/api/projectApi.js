@@ -3,7 +3,7 @@
 const PROJECTS_KEY = 'projects';
 
 const projectId = (projectName) => {
-  return projectName.toLowerCase().replace(/\s+/g, '-');
+  return projectName.toLowerCase().replace(/[^a-z0-9]/g, '-');
 };
 
 const ProjectFactory = ({ name, description = '' }) => {

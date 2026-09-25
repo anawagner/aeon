@@ -1,4 +1,4 @@
-import { getTasks } from '../../api/taskApi.js';
+import { getTasks, getTaskByProject } from '../../api/taskApi.js';
 import { getProjects } from '../../api/projectApi.js';
 import { TaskList } from '../../components/TaskList/taskList.js';
 import { PageTitle } from '../../components/PagetTitle/pageTitle.js';
@@ -16,8 +16,13 @@ const MyMissions = (param = 'all') => {
   );
   section.appendChild(sectionTitle);
 
-  const allTasks = getTasks();
-  const missions = TaskList(allTasks);
+  let tasks = {};
+  if (param == 'all') {
+    tasks = getTasks();
+  } else {
+    tasks = getTaskByProject(param);
+  }
+  const missions = TaskList(tasks);
   section.append(missions);
 
   return section;

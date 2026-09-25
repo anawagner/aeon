@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 100px 100px;
   gap: 1rem;
   border-bottom: 1px solid var(--muted-color);
-  padding: 1rem;
+  padding: 0.25rem 0.75rem;
 }
 
 .task-list-header {
