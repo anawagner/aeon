@@ -1,3 +1,8 @@
+.task-item {
+  padding: 1rem;
+  align-items: start;
+}
+
 .task-main {
   display: flex;
   gap: 2rem;
@@ -5,10 +10,6 @@
 
 .task-title {
   font-weight: bold;
-}
-
-.task-col {
-  align-self: start;
 }
 
 .task-checkbox {

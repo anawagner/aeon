@@ -23,7 +23,6 @@ const TaskItem = (item) => {
 
   const taskCheckBox = document.createElement('div');
   taskCheckBox.classList.add('task-checkbox');
-  taskCheckBox.classList.add('task-col');
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
@@ -41,16 +40,13 @@ const TaskItem = (item) => {
 
   const taskContent = document.createElement('div');
   taskContent.classList.add('task-content');
-  taskContent.classList.add('task-col');
 
   addDiv('task-title', item.title, taskContent);
   addDiv('task-description', item.description, taskContent);
   taskElement.appendChild(taskContent);
 
   const dueDiv = addDiv('due-date', formatDueDate(item.dueDate), taskElement);
-  dueDiv.classList.add('task-col');
   const priorityDiv = addDiv('priority', item.priority, taskElement);
-  priorityDiv.classList.add('task-col');
 
   return taskElement;
 };

@@ -3,7 +3,6 @@ import { getProjects } from '../../api/projectApi.js';
 import { TaskList } from '../../components/TaskList/taskList.js';
 import { PageTitle } from '../../components/PagetTitle/pageTitle.js';
 import { Projects } from '../../components/Projects/projects.js';
-import { AddTaskButton } from '../../components/AddTask/addTask.js';
 
 const MyMissions = (param = 'all') => {
   const section = document.createElement('section');
@@ -12,7 +11,7 @@ const MyMissions = (param = 'all') => {
     'My Missions',
     'A plan is simply a list of choices',
     Projects,
-    AddTaskButton
+    ''
   );
   section.appendChild(sectionTitle);
 

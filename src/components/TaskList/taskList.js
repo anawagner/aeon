@@ -1,5 +1,6 @@
 import { TaskItem } from '../TaskItem/taskItem';
 import { addDiv } from '../../utils/utils';
+import { AddTask } from '../TaskItem/addTask';
 import './taskList.css';
 
 const TaskList = (taskList) => {
@@ -13,6 +14,9 @@ const TaskList = (taskList) => {
     const taskItem = TaskItem(task);
     taskListElement.appendChild(taskItem);
   }
+
+  const addTaskRow = AddTask();
+  taskListElement.appendChild(addTaskRow);
   return taskListElement;
 };
 

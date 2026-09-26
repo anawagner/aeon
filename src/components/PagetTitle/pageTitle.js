@@ -21,8 +21,10 @@ const PageTitle = (title, subText, subNav, action) => {
 
   div.appendChild(heading);
 
-  const actionElement = action();
-  div.appendChild(actionElement);
+  if (action) {
+    const actionElement = action();
+    div.appendChild(actionElement);
+  }
   sectionHeader.appendChild(div);
 
   const subNavElement = subNav();
