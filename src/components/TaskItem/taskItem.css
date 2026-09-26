@@ -6,3 +6,18 @@
 .task-title {
   font-weight: bold;
 }
+
+.task-col {
+  align-self: start;
+}
+
+.task-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.task-done {
+  text-decoration: line-through;
+}

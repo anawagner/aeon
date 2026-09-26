@@ -31,6 +31,8 @@ html {
   --text-color: #1a1530;
   --primary-color: #6e63a6;
   --muted-color: #ebe5e5;
+  --control-border: #c7c0c8;
+  --control-border-hover: #958ba9;
   --dark-accent-text: #d8ba92;
 
   --error-color: #e67ca0;
@@ -70,4 +72,48 @@ div,
 li,
 a {
   font-family: var(--font-body);
+}
+
+.input {
+  border: 1px solid var(--control-border);
+}
+
+.input:hover {
+  border-color: var(--control-border-hover);
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(110, 99, 166, 0.15);
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--control-border);
+  border-radius: 0.5rem;
+  position: relative;
+  vertical-align: -2px;
+  color: var(--primary-color);
+}
+
+input[type='checkbox']::before {
+  content: '✔';
+  position: absolute;
+  font-size: 1.5rem;
+  right: -1px;
+  top: -0.3em;
+  visibility: hidden;
+}
+
+input[type='checkbox']:checked::before {
+  /* Use `visibility` instead of `display` to avoid recalculating layout */
+  visibility: visible;
+}
+
+input[type='checkbox']:disabled {
+  border-color: black;
+  background: #ddd;
+  color: gray;
 }

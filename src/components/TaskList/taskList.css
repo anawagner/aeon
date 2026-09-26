@@ -1,14 +1,19 @@
 .task-row {
   display: grid;
-  grid-template-columns: 1fr 100px 100px;
+  grid-template-columns: 30px 1fr 100px 100px;
   gap: 1rem;
   border-bottom: 1px solid var(--muted-color);
   padding: 0.25rem 0.75rem;
 }
 
+.task-item {
+  padding: 1rem;
+}
+
 .task-list-header {
   text-transform: uppercase;
   color: var(--primary-color);
+  font-weight: bold;
 }
 
 .task-list {

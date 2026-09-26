@@ -177,23 +177,23 @@ const deleteChecklistItem = (taskId, itemId) => {
 };
 
 // mark task or checklist item as done or not done
-const toggleTaskDone = (taskId) => {
+const setTaskDone = (taskId, isDone) => {
   const tasks = getTasks();
   const task = tasks.find((t) => t.id === taskId);
   if (task) {
-    task.isDone = !task.isDone;
+    task.isDone = isDone;
     task.updatedAt = new Date().toISOString();
     localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
   }
 };
 
-const toggleChecklistItemDone = (taskId, itemId) => {
+const setListItemDone = (taskId, itemId, isDone) => {
   const tasks = getTasks();
   const task = tasks.find((t) => t.id === taskId);
   if (task) {
     const item = task.checklist.find((i) => i.id === itemId);
     if (item) {
-      item.isDone = !item.isDone;
+      item.isDone = isDone;
       task.updatedAt = new Date().toISOString();
       localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
     }
@@ -231,6 +231,6 @@ export {
   addChecklistItem,
   updateChecklistItem,
   deleteChecklistItem,
-  toggleTaskDone,
-  toggleChecklistItemDone
+  setTaskDone,
+  setListItemDone
 };

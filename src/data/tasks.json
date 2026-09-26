@@ -28,6 +28,7 @@
     "description": "explore the Aeon app and its features",
     "dueDate": "2026-11-08",
     "status": "to-do",
-    "priority": "medium"
+    "priority": "medium",
+    "isDone": true
   }
 ]
