@@ -4,6 +4,9 @@ import { addDiv } from '../../utils/utils';
 import { setTaskDone } from '../../api/taskApi';
 
 const formatDueDate = (isoDateString) => {
+  if (!isoDateString) {
+    return '--';
+  }
   const date = parseISO(isoDateString);
   return format(date, 'MMM d');
 };

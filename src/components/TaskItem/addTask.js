@@ -1,7 +1,7 @@
 import './taskItem.css';
 import { addDiv } from '../../utils/utils';
 
-const AddTask = () => {
+const AddTask = (doUpdate) => {
   const quickAdd = document.createElement('form');
   quickAdd.classList.add('add-task');
 
@@ -31,15 +31,10 @@ const AddTask = () => {
 
     if (action == 'cancel') {
       input.value = '';
-      // hide the form
       return;
     }
     if (input.value) {
-      console.log('new task is: ', input.value, action);
-      // create the new task
-    } else {
-      console.log('please write a task', action);
-      // show an error ? do nothing?
+      doUpdate(input.value);
     }
   });
 

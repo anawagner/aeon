@@ -61,6 +61,9 @@ const getTask = (id) => {
 
 const getTaskByProject = (projectId) => {
   const allTasks = getTasks();
+  if (projectId == 'all') {
+    return allTasks;
+  }
   return allTasks.filter((task) => task.projectID == projectId);
 };
 
