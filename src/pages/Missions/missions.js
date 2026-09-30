@@ -1,23 +1,30 @@
+import { TaskItem } from '../../components/TaskItem/taskItem.js';
+import { addDiv } from '../../utils/utils.js';
+import { AddTask } from '../../components/TaskItem/addTask.js';
 import { getProjects } from '../../api/projectApi.js';
-import { TaskList } from '../../components/TaskList/taskList.js';
-import { PageTitle } from '../../components/PagetTitle/pageTitle.js';
-import { Projects } from '../../components/Projects/projects.js';
+import { getTaskByProject, createTask } from '../../api/taskApi.js';
+
+import './missions.css';
 
 const MyMissions = (param = 'all') => {
-  const section = document.createElement('section');
+  const taskListElement = document.createElement('div');
+  taskListElement.classList.add('task-list');
 
-  const sectionTitle = PageTitle(
-    'My Missions',
-    'A plan is simply a list of choices',
-    Projects,
-    ''
-  );
-  section.appendChild(sectionTitle);
+  const listHeader = taskListHeader();
+  taskListElement.appendChild(listHeader);
 
-  const missions = TaskList(param);
-  section.append(missions);
+  const div = document.createElement('div');
+  renderList(param, div);
+  taskListElement.append(div);
 
-  return section;
+  const quickAdd = (newText) => {
+    createTask({ title: newText });
+    renderList(param, div);
+  };
+
+  const addTaskRow = AddTask(quickAdd);
+  taskListElement.appendChild(addTaskRow);
+  return taskListElement;
 };
 
 const missionsParams = (paramValue) => {
@@ -28,6 +35,29 @@ const missionsParams = (paramValue) => {
   } else {
     return null;
   }
+};
+
+const renderList = (projectName, parent) => {
+  const tasks = getTaskByProject(projectName);
+  parent.innerHTML = '';
+  for (const task of tasks) {
+    const taskItem = TaskItem(task);
+    parent.appendChild(taskItem);
+  }
+  return parent;
+};
+
+const taskListHeader = () => {
+  const header = document.createElement('div');
+  header.classList.add('task-list-header');
+  header.classList.add('task-row');
+
+  addDiv('', '', header);
+  addDiv('', 'Mission', header);
+  addDiv('', 'Due', header);
+  addDiv('', 'Priority', header);
+
+  return header;
 };
 
 export { MyMissions, missionsParams };

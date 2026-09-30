@@ -1,28 +1,25 @@
 @import './reset.css';
 @import './global.css';
 
-body {
-  background: linear-gradient(
-    180deg,
-    var(--theme-bg-dark) 0%,
-    var(--theme-bg) 100%
-  );
+header {
+  padding: 1rem 2rem;
 }
 
+header > p {
+  padding: 0;
+  margin: 0;
+  size: 0.75rem;
+}
 #app {
   display: flex;
-  padding: 1rem;
+  padding: 0 2rem;
   gap: 1rem;
-  min-height: 100dvh;
 }
 
-main {
+#menu {
+  max-width: 300px;
+}
+
+#content {
   flex: 1;
-  background-color: var(--content-bg);
-  border-radius: 1rem;
-  padding: 2rem;
-}
-
-.sidebar {
-  padding: 1.5rem;
 }

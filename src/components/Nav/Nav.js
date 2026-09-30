@@ -1,6 +1,6 @@
-import './pageTitle.css';
+import './Nav.css';
 
-const PageTitle = (title, subText, subNav, action) => {
+const Nav = (title, subText, subNav, action) => {
   const sectionHeader = document.createElement('div');
   sectionHeader.classList.add('section-header');
 
@@ -33,4 +33,12 @@ const PageTitle = (title, subText, subNav, action) => {
   return sectionHeader;
 };
 
-export { PageTitle };
+const getUri = (name) => {
+  const hashId = name.toLowerCase().replace(' ', '-');
+  return `#${hashId}`;
+};
+
+const navItem = (name, rest) => {
+  return { name, uri: getUri(name), ...rest };
+};
+export { Nav, navItem };
