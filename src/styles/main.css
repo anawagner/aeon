@@ -10,6 +10,12 @@ header > p {
   margin: 0;
   size: 0.75rem;
 }
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+
 #app {
   display: flex;
   padding: 0 2rem;
@@ -22,4 +28,8 @@ header > p {
 
 #content {
   flex: 1;
+}
+
+.btn-icon {
+  width: 30px;
 }

@@ -1,5 +1,5 @@
 import './taskItem.css';
-import { addDiv } from '../../utils/utils';
+import { addDiv, createButton } from '../../utils/utils';
 
 const AddTask = (doUpdate) => {
   const quickAdd = document.createElement('form');
@@ -41,13 +41,4 @@ const AddTask = (doUpdate) => {
   return quickAdd;
 };
 
-const createButton = (action, type, label, className) => {
-  const button = document.createElement('button');
-  button.classList.add(action, className);
-  button.textContent = label;
-  button.type = type;
-  button.name = action;
-  button.value = action;
-  return button;
-};
 export { AddTask };

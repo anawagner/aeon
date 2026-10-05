@@ -7,17 +7,17 @@ const Projects = () => {
   const projectNavigation = document.createElement('div');
   projectNavigation.classList.add('project-navigation');
 
-  addProjectLink(`#my-missions/`, 'All', projectNavigation);
+  addProjectLink(`/`, 'All', projectNavigation);
 
   projectList.forEach((project) => {
-    addProjectLink(
-      `#my-missions/${project.id}`,
-      project.name,
-      projectNavigation
-    );
+    addProjectLink(`#${project.id}`, project.name, projectNavigation);
   });
 
-  const addNew = addProjectLink(`#my-missions/`, '+', projectNavigation);
+  const addNew = addProjectLink(
+    `#my-missions/`,
+    '+ Add a Mission',
+    projectNavigation
+  );
   addNew.classList.add('add-new');
   return projectNavigation;
 };

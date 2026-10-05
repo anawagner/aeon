@@ -18,7 +18,7 @@ const MyMissions = (param = 'all') => {
   taskListElement.append(div);
 
   const quickAdd = (newText) => {
-    createTask({ title: newText });
+    createTask({ title: newText, projectID: param });
     renderList(param, div);
   };
 
@@ -27,7 +27,7 @@ const MyMissions = (param = 'all') => {
   return taskListElement;
 };
 
-const missionsParams = (paramValue) => {
+const projectPath = (paramValue) => {
   const projects = getProjects();
   const projectIDs = projects.map((project) => project.id);
   if (projectIDs.includes(paramValue)) {
@@ -56,8 +56,9 @@ const taskListHeader = () => {
   addDiv('', 'Mission', header);
   addDiv('', 'Due', header);
   addDiv('', 'Priority', header);
+  addDiv('', '', header);
 
   return header;
 };
 
-export { MyMissions, missionsParams };
+export { MyMissions, projectPath };
