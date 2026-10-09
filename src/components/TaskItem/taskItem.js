@@ -21,7 +21,7 @@ const renderStatus = (isDone, elem) => {
 
 const TaskItem = (item) => {
   const taskRow = document.createElement('div');
-  taskRow.classList.add('task-item', 'task-row');
+  taskRow.classList.add('task-item', 'task-list-columns');
 
   const checkCell = document.createElement('div');
   checkCell.classList.add('task-checkbox');
@@ -40,22 +40,8 @@ const TaskItem = (item) => {
   const taskContent = makeContent(item);
   taskRow.appendChild(taskContent);
 
-  addDiv('due-date', formatDueDate(item.dueDate), taskRow);
   addDiv('priority', item.priority, taskRow);
-
-  const actions = addDiv('task-actions', '', taskRow);
-
-  // actions buttons
-  const view = createButton('view', 'button', 'Details', 'view-task');
-  const edit = createButton('edit', 'button', 'Edit', 'edit-task');
-  const deleteButton = createButton(
-    'delete',
-    'button',
-    'Delete',
-    'delete-task'
-  );
-
-  actions.append(view, edit, deleteButton);
+  addDiv('due-date', formatDueDate(item.dueDate), taskRow);
 
   return taskRow;
 };
@@ -66,7 +52,26 @@ const makeContent = (item) => {
 
   addDiv('task-title', item.title, taskContent);
   addDiv('task-description', item.description, taskContent);
+
+  const actionBtns = actionButtons(item.id);
+  taskContent.append(actionBtns);
   return taskContent;
+};
+
+const actionButtons = (taskId) => {
+  const actions = document.createElement('div');
+  actions.classList.add('task-actions');
+  // actions buttons
+  const view = createButton('view', 'button', 'Details', 'action');
+  const edit = createButton('edit', 'button', 'Edit', 'action');
+  const deleteButton = createButton('delete', 'button', 'Delete', 'action');
+
+  view.dataset.id = taskId;
+  edit.dataset.id = taskId;
+  deleteButton.dataset.id = taskId;
+
+  actions.append(view, edit, deleteButton);
+  return actions;
 };
 
 const makeCheckbox = (item) => {

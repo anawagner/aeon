@@ -14,13 +14,45 @@
       <h1>AEON</h1>
       <p>a task manager for the ages</p>
     </header>
-    <main id="app">
+    <main>
       <div class="left-side">
         <h2>Projects</h2>
         <nav id="projects"></nav>
       </div>
-      <div>
-        <div id="content"></div>
+      <div class="content">
+        <div class="list-container">
+          <div class="task-list-columns">
+            <div></div>
+            <div><h2>To Dos</h2></div>
+            <div>Priority</div>
+            <div>Due Date</div>
+          </div>
+          <div id="tasks" class="task-list"></div>
+          <form id="add-task" class="add-task">
+            <div></div>
+            <input
+              type="text"
+              id="todo-input"
+              placeholder="add new task"
+              required
+            />
+            <div class="todo-buttons">
+              <button class="add todo" type="submit" name="add" value="add">
+                Add
+              </button>
+              <button
+                class="cancel todo"
+                type="submit"
+                name="cancel"
+                value="cancel"
+                formnovalidate
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+        <div id="task-detail" class="details-container"></div>
       </div>
     </main>
   </body>

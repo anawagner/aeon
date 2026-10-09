@@ -1,11 +1,6 @@
 .task-item {
-  padding: 1rem;
-  align-items: start;
-}
-
-.task-main {
-  display: flex;
-  gap: 2rem;
+  border: 1px solid var(--muted-color);
+  border-radius: 0.5rem;
 }
 
 .task-title {
@@ -14,9 +9,8 @@
 
 .task-checkbox {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .task-done {
