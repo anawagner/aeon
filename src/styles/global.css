@@ -40,8 +40,14 @@ html {
   --warning-color: #f5c16c;
   --success-color: #6ac39a;
 
-  --font-body: 'Manrope', sans-serif;
-  --font-title: 'Fraunces', serif;
+  --font-body:
+    ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
+    'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro,
+    sans-serif;
+  --font-title:
+    ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
+    'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro,
+    sans-serif;
 }
 
 body {

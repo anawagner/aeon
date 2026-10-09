@@ -5,7 +5,11 @@
     "dueDate": "2026-11-08",
     "status": "to-do",
     "priority": "high",
-    "projectID": "hero-s-journey"
+    "projectID": "hero-s-journey",
+    "checklist": [
+      { "id": "1", "title": "Get a Layout design", "isDone": false },
+      { "id": "2", "title": "create a template", "isDone": false }
+    ]
   },
   {
     "title": "Read The Odyssey",

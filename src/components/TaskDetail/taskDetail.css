@@ -1,0 +1,14 @@
+#modal-container {
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  inset: 0;
+  margin: auto;
+  position: fixed;
+}
+
+#modal-container::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+}

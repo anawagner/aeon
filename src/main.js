@@ -4,6 +4,7 @@ import { initializeData, getTaskByProject, createTask } from './api/taskApi.js';
 import { Projects } from './components/Projects/projects.js';
 import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
+import { taskDetailPopover } from './components/TaskDetail/taskDetail.js';
 
 function main(initialHash) {
   initializeData(tasks, projects);
@@ -40,7 +41,13 @@ function main(initialHash) {
     const taskBtn = e.target.closest('.action');
 
     if (taskBtn) {
-      console.log(`${taskBtn.value} task`, taskBtn.dataset.id);
+      const taskAction = taskBtn.value;
+      const taskId = taskBtn.dataset.id;
+      console.log(`${taskAction} task`, taskId);
+
+      if (taskAction == 'view') {
+        taskDetailPopover(taskId);
+      }
     } else {
       return;
     }
