@@ -1,6 +1,6 @@
 import './taskItem.css';
 import { format, parseISO } from 'date-fns';
-import { addDiv, createButton } from '../../utils/utils';
+import { addDiv, createButton, makeCheckbox } from '../../utils/utils';
 import { setTaskDone } from '../../api/taskApi';
 
 const formatDueDate = (isoDateString) => {
@@ -74,12 +74,4 @@ const actionButtons = (taskId) => {
   return actions;
 };
 
-const makeCheckbox = (item) => {
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.id = item.id;
-  checkbox.checked = item.isDone;
-
-  return checkbox;
-};
 export { TaskItem };

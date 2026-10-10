@@ -15,7 +15,7 @@ const Projects = () => {
 
   const addNew = addProjectLink(
     `#my-missions/`,
-    '+ Add a Mission',
+    '+ New Project',
     projectNavigation
   );
   addNew.classList.add('add-new');

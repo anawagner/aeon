@@ -43,7 +43,6 @@ function main(initialHash) {
     if (taskBtn) {
       const taskAction = taskBtn.value;
       const taskId = taskBtn.dataset.id;
-      console.log(`${taskAction} task`, taskId);
 
       if (taskAction == 'view') {
         taskDetailPopover(taskId);

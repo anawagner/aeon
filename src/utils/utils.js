@@ -28,4 +28,13 @@ const createIcon = (uri, className) => {
   return iconImg;
 };
 
-export { addElement, addDiv, createButton, createIcon };
+const makeCheckbox = (item) => {
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = item.id;
+  checkbox.checked = item.isDone;
+
+  return checkbox;
+};
+
+export { addElement, addDiv, createButton, createIcon, makeCheckbox };
