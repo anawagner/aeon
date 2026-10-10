@@ -24,7 +24,12 @@ const getProjects = () => {
 
 const getProject = (id) => {
   const projects = getProjects();
-  return projects.find((project) => project.id === id);
+  const found = projects.find((project) => project.id === id);
+  if (found) {
+    return found;
+  } else {
+    return { id: 'default', name: '', description: '' };
+  }
 };
 
 const createProject = (project) => {

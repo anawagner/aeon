@@ -48,12 +48,6 @@
   font-weight: bold;
 }
 
-.task-checkbox {
-  display: flex;
-  justify-content: center;
-  padding-top: 0.25rem;
-}
-
 .task-done {
   text-decoration: line-through;
 }
@@ -72,4 +66,35 @@
 
 .past-date {
   color: var(--error-color);
+}
+
+.task-checkbox > input[type='checkbox'] {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--control-border);
+  border-radius: 0.5rem;
+  position: relative;
+  vertical-align: -2px;
+  color: var(--primary-color);
+}
+
+.task-checkbox > input[type='checkbox']::before {
+  content: '✔';
+  position: absolute;
+  font-size: 1.5rem;
+  right: -1px;
+  top: -0.3em;
+  visibility: hidden;
+}
+
+.task-checkbox > input[type='checkbox']:checked::before {
+  /* Use `visibility` instead of `display` to avoid recalculating layout */
+  visibility: visible;
+}
+
+.task-checkbox {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
 }

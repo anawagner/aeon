@@ -30,7 +30,7 @@
 }
 
 .meta-item {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
@@ -74,8 +74,27 @@
 
 .input-group textarea {
   border: 1px solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  padding-bottom: 1rem;
 }
 
 .input-group textarea:hover {
   border: 1px solid var(--control-border-hover);
+}
+
+.notes-section {
+  position: relative;
+  display: inline-block;
+}
+
+.notes-section::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 2px;
+  right: 11px;
+  height: 2.25rem;
+  background: linear-gradient(transparent, white);
+  pointer-events: none;
 }
