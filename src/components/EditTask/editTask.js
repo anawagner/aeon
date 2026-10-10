@@ -1,29 +1,22 @@
 import { getTask } from '../../api/taskApi';
 import { getProject } from '../../api/projectApi';
 import { makeCheckbox } from '../../utils/utils';
-import './taskDetail.css';
+import './editTask.css';
 
 const editTaskPopover = (taskId) => {
   const container = document.querySelector('div#modal-container');
   container.innerHTML = '';
 
-  const taskDetail = document.createElement('div');
-  taskDetail.classList.add('task-detail-view');
+  const editTask = document.createElement('form');
+  editTask.classList.add('task-form');
 
   const task = getTask(taskId);
 
-  const editTitle = document.createElement('input');
-  editTitle.type = 'text';
-  editTitle.id = `${taskId}-title`;
-  editTitle.placeholder = task.title;
-  editTitle.required = true;
-  editTitle.classList.add('edit-title');
-  editTitle.value = task.title;
-  taskDetail.append(editTitle);
+  const editTitle = createTitleInput(task.title);
+  editTask.append(editTitle);
 
-  const description = document.createElement('p');
-  description.textContent = task.description;
-  taskDetail.append(description);
+  const description = createDescriptionInput(task.description);
+  editTask.append(description);
 
   const meta = document.createElement('div');
   meta.classList.add('task-meta');
@@ -39,16 +32,62 @@ const editTaskPopover = (taskId) => {
   const projectItem = createMetaItem('Project', projectName);
   meta.append(projectItem);
 
-  taskDetail.append(meta);
+  editTask.append(meta);
 
   const checklist = createSubtasks(task.checklist);
-  taskDetail.append(checklist);
+  editTask.append(checklist);
 
   const notes = createNotesSection(task.notes);
-  taskDetail.append(notes);
+  editTask.append(notes);
 
-  container.appendChild(taskDetail);
+  container.appendChild(editTask);
   container.showPopover();
+};
+
+const createTitleInput = (title) => {
+  const group = document.createElement('div');
+  group.classList.add('input-group');
+
+  // input
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.id = 'title';
+  input.name = 'title';
+  input.placeholder = title;
+  input.required = true;
+  input.value = title;
+
+  // label
+  const label = document.createElement('label');
+  label.htmlFor = 'title';
+  label.dataset.content = 'Title';
+  label.textContent = 'Title';
+
+  group.append(input, label);
+  return group;
+};
+
+const createDescriptionInput = (descriptionText) => {
+  const group = document.createElement('div');
+  group.classList.add('input-group');
+
+  // input
+  const input = document.createElement('textarea');
+  input.id = 'description';
+  input.name = 'description';
+  input.rows = 3;
+  input.cols = 40;
+  input.placeholder = descriptionText || 'Add a description...';
+  input.value = descriptionText;
+
+  // label
+  const label = document.createElement('label');
+  label.htmlFor = 'description';
+  label.dataset.content = 'Description';
+  label.textContent = 'Description';
+
+  group.append(input, label);
+  return group;
 };
 
 const createMetaItem = (labelText, valueText) => {

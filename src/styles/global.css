@@ -1,27 +1,3 @@
-@font-face {
-  font-family: 'Fraunces';
-  src: url('../assets/fonts/Fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf')
-    format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fraunces';
-  src: url('../assets/fonts/Fraunces/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf')
-    format('truetype');
-  font-weight: 100 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Manrope';
-  src: url('../assets/fonts/Manrope/Manrope-VariableFont_wght.ttf')
-    format('truetype');
-  font-weight: 200 800;
-  font-style: normal;
-}
-
 /* color variables */
 html {
   --theme-bg-dark: #282547;
@@ -39,6 +15,10 @@ html {
   --error-color: #e67ca0;
   --warning-color: #f5c16c;
   --success-color: #6ac39a;
+
+  --error-color-light: #f1c9d7;
+  --warning-color-light: #fcecd3;
+  --success-color-light: #d6efe3;
 
   --high-color: #e67ca0;
   --medium-color: #f5c16c;
@@ -61,46 +41,6 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--text-color);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.title,
-.page-title,
-.card-title {
-  font-family: var(--font-title);
-  letter-spacing: -0.02em;
-}
-
-button,
-input,
-textarea,
-select,
-label,
-p,
-span,
-div,
-li,
-a {
-  font-family: var(--font-body);
-}
-
-.input {
-  border: 1px solid var(--control-border);
-  border-radius: 0.5rem;
-}
-
-.input:hover {
-  border-color: var(--control-border-hover);
-}
-
-.input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(110, 99, 166, 0.15);
 }
 
 input[type='checkbox'] {

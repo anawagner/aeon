@@ -85,3 +85,24 @@ button.cancel {
   border: 1px solid var(--error-color);
   color: var(--error-color);
 }
+
+button.add:hover {
+  background-color: var(--success-color);
+  color: white;
+}
+button.cancel:hover {
+  background-color: var(--error-color);
+  color: white;
+}
+button.add:active {
+  background-color: var(--success-color-light);
+  color: white;
+}
+button.cancel:active {
+  background-color: var(--error-color-light);
+  color: white;
+}
+
+.add-task > input {
+  border-bottom: 1px solid var(--muted-color);
+}

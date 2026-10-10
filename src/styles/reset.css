@@ -12,6 +12,11 @@ nav ul li {
   list-style: none;
 }
 
+input {
+  border: 0;
+  padding: 0 0.5rem;
+}
+
 /*  https://www.joshwcomeau.com/css/custom-css-reset/ */
 /*
   1. Use a more-intuitive box-sizing model.
