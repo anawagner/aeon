@@ -25,12 +25,13 @@ const Projects = () => {
 const addProjectLink = (uri, label, parent) => {
   const div = document.createElement('div');
   div.classList.add('project');
+  div.textContent = label;
 
   const link = document.createElement('a');
   link.href = uri;
-  link.textContent = label;
-  div.appendChild(link);
-  parent.appendChild(div);
+
+  link.appendChild(div);
+  parent.appendChild(link);
   return div;
 };
 export { Projects };

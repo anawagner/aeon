@@ -12,14 +12,6 @@ nav ul li {
   list-style: none;
 }
 
-.project a {
-  text-decoration: none;
-  color: inherit;
-}
-.project a:visited {
-  color: inherit;
-}
-
 /*  https://www.joshwcomeau.com/css/custom-css-reset/ */
 /*
   1. Use a more-intuitive box-sizing model.
