@@ -1,15 +1,12 @@
 import './taskItem.css';
-import { format, parseISO } from 'date-fns';
-import { addDiv, createButton, makeCheckbox } from '../../utils/utils';
+import {
+  addDiv,
+  createButton,
+  makeCheckbox,
+  formatDueDate,
+  isPastDay
+} from '../../utils/utils';
 import { setTaskDone } from '../../api/taskApi';
-
-const formatDueDate = (isoDateString) => {
-  if (!isoDateString) {
-    return '--';
-  }
-  const date = parseISO(isoDateString);
-  return format(date, 'MMM d');
-};
 
 const renderStatus = (isDone, elem) => {
   if (isDone) {
@@ -19,9 +16,30 @@ const renderStatus = (isDone, elem) => {
   }
 };
 
+const priorityClass = {
+  high: 'high-priority-item',
+  medium: 'medium-priority-item',
+  low: 'low-priority-item',
+  normal: 'normal-priority-item'
+};
+
+const priorityDecoration = {
+  high: 'priority-high',
+  medium: 'priority-medium',
+  low: 'priority-low'
+};
+
+const priorityDisplay = {
+  high: 'High',
+  medium: 'Medium',
+  low: 'Low',
+  normal: ''
+};
+
 const TaskItem = (item) => {
   const taskRow = document.createElement('div');
   taskRow.classList.add('task-item', 'task-list-columns');
+  taskRow.classList.add(priorityClass[item.priority]);
 
   const checkCell = document.createElement('div');
   checkCell.classList.add('task-checkbox');
@@ -40,8 +58,19 @@ const TaskItem = (item) => {
   const taskContent = makeContent(item);
   taskRow.appendChild(taskContent);
 
-  addDiv('priority', item.priority, taskRow);
-  addDiv('due-date', formatDueDate(item.dueDate), taskRow);
+  const priorityCol = addDiv('priority-column', '', taskRow);
+  const priorityBadge = addDiv(
+    'priority',
+    priorityDisplay[item.priority],
+    priorityCol
+  );
+  const decorationClass = priorityDecoration[item.priority];
+  if (decorationClass) priorityBadge.classList.add(decorationClass);
+
+  const dateDisplay = addDiv('due-date', formatDueDate(item.dueDate), taskRow);
+  if (isPastDay(item.dueDate)) {
+    dateDisplay.classList.add('past-date');
+  }
 
   return taskRow;
 };

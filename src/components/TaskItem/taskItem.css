@@ -1,6 +1,47 @@
 .task-item {
-  border: 1px solid var(--muted-color);
   border-radius: 0.5rem;
+}
+
+.high-priority-item {
+  border: 1px solid var(--high-color);
+}
+
+.medium-priority-item {
+  border: 1px solid var(--medium-color);
+}
+
+.low-priority-item {
+  border: 1px solid var(--low-color);
+}
+
+.normal-priority-item {
+  border: 1px solid var(--muted-color);
+}
+
+.priority {
+  border-radius: 1rem;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.priority-high {
+  border: 1px solid var(--high-color);
+  background-color: var(--high-color-light);
+  color: var(--high-color);
+}
+
+.priority-medium {
+  border: 1px solid var(--medium-color);
+  background-color: var(--medium-color-light);
+  color: var(--medium-color);
+}
+
+.priority-low {
+  border: 1px solid var(--low-color);
+  background-color: var(--low-color-light);
+  color: var(--low-color);
 }
 
 .task-title {
@@ -27,4 +68,8 @@
 .task-actions {
   display: flex;
   gap: 1rem;
+}
+
+.past-date {
+  color: var(--error-color);
 }

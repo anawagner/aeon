@@ -14,7 +14,7 @@
   {
     "title": "Read The Odyssey",
     "description": "read the book and take notes",
-    "dueDate": "2026-11-08",
+    "dueDate": "2027-01-23",
     "status": "doing",
     "priority": "medium",
     "projectID": "library",
@@ -23,15 +23,29 @@
   {
     "title": "Yoga",
     "description": "practice yoga for 30 minutes",
-    "dueDate": "2026-11-08",
+    "dueDate": "2026-10-09",
     "status": "done",
+    "priority": "low",
+    "projectID": "health---wellness"
+  },
+  {
+    "title": "Workout",
+    "description": "Do some strenth training exercises",
+    "dueDate": "2026-10-10",
+    "priority": "low",
+    "projectID": "health---wellness"
+  },
+  {
+    "title": "Write in Journal",
+    "description": "Put your thoughts into writing",
+    "dueDate": "2026-10-08",
     "priority": "low",
     "projectID": "health---wellness"
   },
   {
     "title": "explore Aeon",
     "description": "explore the Aeon app and its features",
-    "dueDate": "2026-11-08",
+    "dueDate": "2026-10-01",
     "status": "to-do",
     "priority": "medium",
     "isDone": true

@@ -1,3 +1,12 @@
+import {
+  format,
+  parseISO,
+  isSameYear,
+  differenceInCalendarDays,
+  isToday,
+  isYesterday
+} from 'date-fns';
+
 const addElement = (elem, className, textContent, parent) => {
   const newElement = document.createElement(elem);
   if (className) newElement.classList.add(className);
@@ -37,4 +46,35 @@ const makeCheckbox = (item) => {
   return checkbox;
 };
 
-export { addElement, addDiv, createButton, createIcon, makeCheckbox };
+const formatDueDate = (isoDateString) => {
+  if (!isoDateString) {
+    return '';
+  }
+
+  const date = parseISO(isoDateString);
+  const today = new Date();
+  const dayDiff = differenceInCalendarDays(today, date);
+
+  if (isToday(date)) return 'Today';
+  if (isYesterday(date)) return 'Yesterday';
+  if (dayDiff == -1) return 'Tomorrow';
+
+  const pattern = isSameYear(date, today) ? 'MMM d' : 'MMM d, yyyy';
+  return format(date, pattern);
+};
+
+const isPastDay = (isoDateString) => {
+  if (!isoDateString) return false;
+  const date = parseISO(isoDateString);
+  return differenceInCalendarDays(new Date(), date) >= 1;
+};
+
+export {
+  addElement,
+  addDiv,
+  createButton,
+  createIcon,
+  makeCheckbox,
+  formatDueDate,
+  isPastDay
+};

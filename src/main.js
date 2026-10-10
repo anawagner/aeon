@@ -5,6 +5,7 @@ import { Projects } from './components/Projects/projects.js';
 import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
 import { taskDetailPopover } from './components/TaskDetail/taskDetail.js';
+import { editTaskPopover } from './components/EditTask/editTask.js';
 
 function main(initialHash) {
   initializeData(tasks, projects);
@@ -46,6 +47,8 @@ function main(initialHash) {
 
       if (taskAction == 'view') {
         taskDetailPopover(taskId);
+      } else if (taskAction == 'edit') {
+        editTaskPopover(taskId);
       }
     } else {
       return;

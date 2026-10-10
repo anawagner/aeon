@@ -40,6 +40,14 @@ html {
   --warning-color: #f5c16c;
   --success-color: #6ac39a;
 
+  --high-color: #e67ca0;
+  --medium-color: #f5c16c;
+  --low-color: #6ac39a;
+
+  --high-color-light: #f1c9d7;
+  --medium-color-light: #fcecd3;
+  --low-color-light: #d6efe3;
+
   --font-body:
     ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
     'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro,
