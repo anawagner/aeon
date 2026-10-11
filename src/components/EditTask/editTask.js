@@ -1,14 +1,20 @@
 import { getTask } from '../../api/taskApi';
 import { getProjects } from '../../api/projectApi';
-import { makeCheckbox } from '../../utils/utils';
+import { createButton } from '../../utils/utils';
 import './editTask.css';
 
 const editTaskPopover = (taskId) => {
   const container = document.querySelector('div#modal-container');
   container.innerHTML = '';
 
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = 'x';
+  closeBtn.popoverTargetElement = container;
+  closeBtn.popoverTargetAction = 'hide';
+  container.append(closeBtn);
+
   const editTask = document.createElement('form');
-  editTask.classList.add('task-form');
+  editTask.classList.add('edit-task-form');
 
   const task = getTask(taskId);
 
@@ -27,14 +33,15 @@ const editTaskPopover = (taskId) => {
   const projectItem = projectPicker(task.projectID);
   editTask.append(projectItem);
 
-  const checklist = subtasks(task.checklist);
-  editTask.append(checklist);
-
   const notes = notesSection(task.notes);
   const notesBox = document.createElement('div');
   notesBox.classList.add('notes-section');
   notesBox.append(notes);
   editTask.append(notesBox);
+
+  const saveButton = createButton('save', 'submit', 'Save', 'save-btn');
+  saveButton.id = taskId;
+  editTask.append(saveButton);
 
   container.appendChild(editTask);
   container.showPopover();
@@ -67,18 +74,19 @@ const descriptionInput = (descriptionText) => {
 const datePicker = (dateString) => {
   const input = document.createElement('input');
   input.type = 'date';
-  input.id = 'due-date';
+  input.id = 'dueDate';
   input.name = 'due-date';
   input.value = dateString;
 
-  return inputGroup('due-date', 'Due Date', input);
+  return inputGroup('dueDate', 'Due Date', input);
 };
 
 const priorityPicker = (priorityValue) => {
   const priorities = ['High', 'Medium', 'Low'];
 
   const select = document.createElement('select');
-  select.id = 'priority-select';
+  select.id = 'priority';
+  select.name = 'priority';
 
   priorities.forEach((item) => {
     const option = new Option(item, item.toLowerCase());
@@ -87,14 +95,15 @@ const priorityPicker = (priorityValue) => {
 
   select.value = priorityValue;
 
-  return inputGroup('priority-select', 'Priority', select);
+  return inputGroup('priority', 'Priority', select);
 };
 
 const projectPicker = (projectID) => {
   const allProjects = getProjects();
 
   const select = document.createElement('select');
-  select.id = 'project-select';
+  select.id = 'projectID';
+  select.name = 'projectID';
 
   allProjects.forEach((item) => {
     const option = new Option(item.name, item.id);
@@ -103,7 +112,7 @@ const projectPicker = (projectID) => {
 
   select.value = projectID;
 
-  return inputGroup('project-select', 'Project', select);
+  return inputGroup('projectID', 'Project', select);
 };
 
 const inputGroup = (inputId, labelText, inputElement) => {

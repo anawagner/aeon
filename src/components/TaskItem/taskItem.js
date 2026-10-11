@@ -2,9 +2,9 @@ import './taskItem.css';
 import {
   addDiv,
   createButton,
-  makeCheckbox,
   formatDueDate,
-  isPastDay
+  isPastDay,
+  capitalizeFirstLetter
 } from '../../utils/utils';
 import { setTaskDone } from '../../api/taskApi';
 
@@ -16,55 +16,44 @@ const renderStatus = (isDone, elem) => {
   }
 };
 
-const priorityClass = {
-  high: 'high-priority-item',
-  medium: 'medium-priority-item',
-  low: 'low-priority-item',
-  normal: 'normal-priority-item'
-};
-
-const priorityDecoration = {
-  high: 'priority-high',
-  medium: 'priority-medium',
-  low: 'priority-low'
-};
-
-const priorityDisplay = {
-  high: 'High',
-  medium: 'Medium',
-  low: 'Low',
-  normal: ''
-};
-
 const TaskItem = (item) => {
-  const taskRow = document.createElement('div');
-  taskRow.classList.add('task-item', 'task-list-columns');
-  taskRow.classList.add(priorityClass[item.priority]);
+  const container = document.createElement('div');
+  container.classList.add('task-container');
+
+  const taskItem = document.createElement('div');
+  taskItem.classList.add('task-item');
+
+  const priorityClass = item.priority
+    ? `${item.priority}-priority-item`
+    : 'normal-priority-item';
+  taskItem.classList.add(priorityClass);
 
   const checkCell = document.createElement('div');
   checkCell.classList.add('task-checkbox');
-
   const checkbox = makeCheckbox(item);
   checkCell.appendChild(checkbox);
-  taskRow.appendChild(checkCell);
+  taskItem.appendChild(checkCell);
 
-  renderStatus(item.isDone, taskRow);
+  const taskRow = document.createElement('div');
+  taskRow.classList.add('task-list-columns', 'view-edit', 'task-content');
+  taskRow.dataset.id = item.id;
+  taskRow.value = 'edit';
 
   checkbox.addEventListener('change', (e) => {
     setTaskDone(e.target.id, e.target.checked);
     renderStatus(e.target.checked, taskRow);
   });
 
-  const taskContent = makeContent(item);
-  taskRow.appendChild(taskContent);
+  const taskMain = taskMainSection(item);
+  taskRow.appendChild(taskMain);
 
   const priorityCol = addDiv('priority-column', '', taskRow);
   const priorityBadge = addDiv(
     'priority',
-    priorityDisplay[item.priority],
+    capitalizeFirstLetter(item.priority),
     priorityCol
   );
-  const decorationClass = priorityDecoration[item.priority];
+  const decorationClass = item.priority ? `priority-${item.priority}` : '';
   if (decorationClass) priorityBadge.classList.add(decorationClass);
 
   const dateDisplay = addDiv('due-date', formatDueDate(item.dueDate), taskRow);
@@ -72,35 +61,42 @@ const TaskItem = (item) => {
     dateDisplay.classList.add('past-date');
   }
 
-  return taskRow;
+  renderStatus(item.isDone, taskRow);
+  taskItem.append(taskRow);
+
+  const actions = actionButtons(item.id);
+
+  container.append(taskItem, actions);
+  return container;
 };
 
-const makeContent = (item) => {
-  const taskContent = document.createElement('div');
-  taskContent.classList.add('task-content');
+const taskMainSection = (item) => {
+  const taskMain = document.createElement('div');
+  taskMain.classList.add('task-main');
 
-  addDiv('task-title', item.title, taskContent);
-  addDiv('task-description', item.description, taskContent);
+  addDiv('task-title', item.title, taskMain);
+  addDiv('task-description', item.description, taskMain);
 
-  const actionBtns = actionButtons(item.id);
-  taskContent.append(actionBtns);
-  return taskContent;
+  return taskMain;
 };
 
 const actionButtons = (taskId) => {
   const actions = document.createElement('div');
   actions.classList.add('task-actions');
-  // actions buttons
-  const view = createButton('view', 'button', 'Details', 'action');
-  const edit = createButton('edit', 'button', 'Edit', 'action');
   const deleteButton = createButton('delete', 'button', 'Delete', 'action');
-
-  view.dataset.id = taskId;
-  edit.dataset.id = taskId;
   deleteButton.dataset.id = taskId;
 
-  actions.append(view, edit, deleteButton);
+  actions.append(deleteButton);
   return actions;
+};
+
+const makeCheckbox = (item) => {
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = item.id;
+  checkbox.checked = item.isDone;
+
+  return checkbox;
 };
 
 export { TaskItem };

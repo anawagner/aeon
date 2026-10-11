@@ -1,5 +1,13 @@
+.task-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .task-item {
+  flex: 1;
   border-radius: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .high-priority-item {
@@ -16,6 +24,25 @@
 
 .normal-priority-item {
   border: 1px solid var(--muted-color);
+}
+
+.view-edit {
+  cursor: pointer;
+  padding-left: 0.5rem;
+}
+
+.view-edit:hover {
+  border-radius: 0.5rem;
+  background-color: var(--muted-color);
+}
+
+.task-content > div {
+  padding: 1rem 0;
+}
+
+.task-main {
+  display: flex;
+  flex-direction: column;
 }
 
 .priority {
@@ -52,6 +79,10 @@
   text-decoration: line-through;
 }
 
+.task-actions {
+  display: flex;
+  gap: 1rem;
+}
 .task-actions > button {
   border: 0;
   padding: 0;
@@ -59,13 +90,13 @@
   background-color: transparent;
 }
 
-.task-actions {
-  display: flex;
-  gap: 1rem;
-}
-
 .past-date {
   color: var(--error-color);
+}
+
+/* Checkbox */
+.task-checkbox {
+  padding: 1.3rem 0.5rem;
 }
 
 .task-checkbox > input[type='checkbox'] {
@@ -91,10 +122,4 @@
 .task-checkbox > input[type='checkbox']:checked::before {
   /* Use `visibility` instead of `display` to avoid recalculating layout */
   visibility: visible;
-}
-
-.task-checkbox {
-  display: flex;
-  justify-content: center;
-  padding-top: 0.25rem;
 }

@@ -37,15 +37,6 @@ const createIcon = (uri, className) => {
   return iconImg;
 };
 
-const makeCheckbox = (item) => {
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.id = item.id;
-  checkbox.checked = item.isDone;
-
-  return checkbox;
-};
-
 const formatDueDate = (isoDateString) => {
   if (!isoDateString) {
     return '';
@@ -69,12 +60,17 @@ const isPastDay = (isoDateString) => {
   return differenceInCalendarDays(new Date(), date) >= 1;
 };
 
+function capitalizeFirstLetter(str) {
+  if (!str) return ''; // Handle empty strings safely
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export {
   addElement,
   addDiv,
   createButton,
   createIcon,
-  makeCheckbox,
   formatDueDate,
-  isPastDay
+  isPastDay,
+  capitalizeFirstLetter
 };

@@ -16,6 +16,10 @@ header > p {
   flex-direction: column;
 }
 
+.left-side h2 {
+  padding-left: 2rem;
+}
+
 .content {
   flex: 1;
 }
@@ -26,7 +30,7 @@ header > p {
 
 main {
   display: flex;
-  padding: 0.5rem 2rem 1.5rem;
+  padding: 0 2rem 2rem 0;
   gap: 1rem;
 }
 
@@ -35,10 +39,10 @@ main {
 }
 
 .task-list-columns {
+  flex: 1;
   display: grid;
-  grid-template-columns: 30px 1fr 100px 120px;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
+  grid-template-columns: 1fr 70px 120px;
+  gap: 0.5rem;
 }
 
 .task-list {

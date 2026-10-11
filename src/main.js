@@ -4,8 +4,8 @@ import { initializeData, getTaskByProject, createTask } from './api/taskApi.js';
 import { Projects } from './components/Projects/projects.js';
 import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
-import { taskDetailPopover } from './components/TaskDetail/taskDetail.js';
 import { editTaskPopover } from './components/EditTask/editTask.js';
+import { getTask, updateTask } from './api/taskApi.js';
 
 function main(initialHash) {
   initializeData(tasks, projects);
@@ -39,19 +39,37 @@ function main(initialHash) {
   });
 
   div.addEventListener('click', (e) => {
-    const taskBtn = e.target.closest('.action');
+    const taskBtn = e.target.closest('.view-edit');
 
     if (taskBtn) {
       const taskAction = taskBtn.value;
       const taskId = taskBtn.dataset.id;
 
-      if (taskAction == 'view') {
-        taskDetailPopover(taskId);
-      } else if (taskAction == 'edit') {
+      if (taskAction == 'edit') {
         editTaskPopover(taskId);
       }
     } else {
       return;
+    }
+  });
+
+  document.addEventListener('submit', (e) => {
+    if (e.target && e.target.matches('.edit-task-form')) {
+      e.preventDefault();
+      const taskId = e.submitter.id;
+      const task = getTask(taskId);
+
+      const formData = new FormData(e.target);
+
+      const newTask = {};
+      for (const [key, value] of formData) {
+        console.log(`${key} : ${value}`);
+        newTask[key] = value;
+      }
+      updateTask({ ...task, ...newTask });
+      renderList(selectedProject, div);
+      // close popover
+      closeModal();
     }
   });
 
@@ -61,6 +79,11 @@ function main(initialHash) {
     renderList(selectedProject, div);
   });
 }
+
+const closeModal = () => {
+  const modal = document.querySelector('div#modal-container');
+  modal.hidePopover();
+};
 
 const renderList = (projectName, parent) => {
   const tasks = getTaskByProject(projectName);
