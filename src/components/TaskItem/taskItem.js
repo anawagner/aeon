@@ -4,7 +4,8 @@ import {
   createButton,
   formatDueDate,
   isPastDay,
-  capitalizeFirstLetter
+  capitalizeFirstLetter,
+  icons
 } from '../../utils/utils';
 import { setTaskDone } from '../../api/taskApi';
 
@@ -83,7 +84,8 @@ const taskMainSection = (item) => {
 const actionButtons = (taskId) => {
   const actions = document.createElement('div');
   actions.classList.add('task-actions');
-  const deleteButton = createButton('delete', 'button', 'Delete', 'action');
+  const deleteButton = createButton('delete', 'button', '', 'action');
+  deleteButton.appendChild(icons.delete());
   deleteButton.dataset.id = taskId;
 
   actions.append(deleteButton);

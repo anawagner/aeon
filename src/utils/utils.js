@@ -6,6 +6,9 @@ import {
   isToday,
   isYesterday
 } from 'date-fns';
+import close from '../assets/icons/icons8-close-48.png';
+import add from '../assets/icons/icons8-plus-math-48.png';
+import trash from '../assets/icons/icons8-trash-48.png';
 
 const addElement = (elem, className, textContent, parent) => {
   const newElement = document.createElement(elem);
@@ -29,11 +32,11 @@ const createButton = (action, type, label, className) => {
   return button;
 };
 
-const createIcon = (uri, className) => {
+const createIcon = (uri) => {
   const iconImg = document.createElement('img');
   iconImg.src = uri;
   iconImg.alt = '';
-  iconImg.classList.add(className, 'btn-icon');
+  iconImg.classList.add('btn-icon');
   return iconImg;
 };
 
@@ -65,6 +68,11 @@ function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const icons = {
+  delete: () => createIcon(trash),
+  close: () => createIcon(close),
+  add: () => createIcon(add)
+};
 export {
   addElement,
   addDiv,
@@ -72,5 +80,6 @@ export {
   createIcon,
   formatDueDate,
   isPastDay,
-  capitalizeFirstLetter
+  capitalizeFirstLetter,
+  icons
 };

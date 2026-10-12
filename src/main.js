@@ -1,6 +1,11 @@
 import tasks from './data/tasks.json';
 import projects from './data/projects.json';
-import { initializeData, getTaskByProject, createTask } from './api/taskApi.js';
+import {
+  initializeData,
+  getTaskByProject,
+  createTask,
+  deleteTask
+} from './api/taskApi.js';
 import { Projects } from './components/Projects/projects.js';
 import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
@@ -47,6 +52,22 @@ function main(initialHash) {
 
       if (taskAction == 'edit') {
         editTaskPopover(taskId);
+      }
+    } else {
+      return;
+    }
+  });
+
+  div.addEventListener('click', (e) => {
+    const taskBtn = e.target.closest('.action');
+
+    if (taskBtn) {
+      const taskAction = taskBtn.value;
+      const taskId = taskBtn.dataset.id;
+
+      if (taskAction == 'delete') {
+        deleteTask(taskId);
+        renderList(selectedProject, div);
       }
     } else {
       return;

@@ -84,10 +84,19 @@
   gap: 1rem;
 }
 .task-actions > button {
-  border: 0;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
   padding: 0;
   margin: 0;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.task-actions > button:hover {
+  background-color: var(--error-color);
 }
 
 .past-date {

@@ -1,16 +1,16 @@
 import { getTask } from '../../api/taskApi';
 import { getProjects } from '../../api/projectApi';
-import { createButton } from '../../utils/utils';
+import { createButton, icons } from '../../utils/utils';
 import './editTask.css';
 
 const editTaskPopover = (taskId) => {
-  const container = document.querySelector('div#modal-container');
-  container.innerHTML = '';
+  const popoverDiv = document.querySelector('div#modal-container');
+  popoverDiv.innerHTML = '';
 
-  const closeBtn = document.createElement('button');
-  closeBtn.textContent = 'x';
-  closeBtn.popoverTargetElement = container;
-  closeBtn.popoverTargetAction = 'hide';
+  const container = document.createElement('div');
+  container.classList.add('edit-task-container');
+
+  const closeBtn = closePopoverBtn(popoverDiv);
   container.append(closeBtn);
 
   const editTask = document.createElement('form');
@@ -44,7 +44,8 @@ const editTaskPopover = (taskId) => {
   editTask.append(saveButton);
 
   container.appendChild(editTask);
-  container.showPopover();
+  popoverDiv.append(container);
+  popoverDiv.showPopover();
 };
 
 const titleInput = (titleText) => {
@@ -75,7 +76,7 @@ const datePicker = (dateString) => {
   const input = document.createElement('input');
   input.type = 'date';
   input.id = 'dueDate';
-  input.name = 'due-date';
+  input.name = 'dueDate';
   input.value = dateString;
 
   return inputGroup('dueDate', 'Due Date', input);
@@ -178,4 +179,11 @@ const notesSection = (notes) => {
   return inputGroup('notes', 'Notes', input);
 };
 
+const closePopoverBtn = (popover) => {
+  const closeBtn = document.createElement('button');
+  closeBtn.popoverTargetElement = popover;
+  closeBtn.popoverTargetAction = 'hide';
+  closeBtn.append(icons.close());
+  return closeBtn;
+};
 export { editTaskPopover };
