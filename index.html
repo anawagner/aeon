@@ -18,12 +18,33 @@
       <div class="left-side">
         <h2>Projects</h2>
         <nav id="projects"></nav>
+        <div>
+          <form id="add-project" class="add-project">
+            <input
+              type="text"
+              id="project-input"
+              placeholder="new project"
+              required
+            />
+            <button class="add proj" type="submit" name="add" value="add">
+              +
+            </button>
+            <button
+              class="cancel proj"
+              type="submit"
+              name="cancel"
+              value="cancel"
+              formnovalidate
+            >
+              x
+            </button>
+          </form>
+        </div>
       </div>
       <div class="content">
         <div class="list-container">
           <div id="tasks" class="task-list"></div>
           <form id="add-task" class="add-task">
-            <div></div>
             <input
               type="text"
               id="todo-input"

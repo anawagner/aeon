@@ -19,12 +19,7 @@
   align-self: flex-end;
   position: absolute;
   top: 15px;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
   padding: 0;
-  margin: 0;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .edit-task-container > button:hover {
@@ -40,15 +35,12 @@
 }
 
 .edit-task-form > button {
-  cursor: pointer;
-  background-color: transparent;
   color: var(--success-color);
   font-weight: bold;
-  border: 1px solid var(--success-color);
-  border-radius: 0.5rem;
   width: fit-content;
   padding: 0.25rem 0.5rem;
   align-self: flex-end;
+  border: 1px solid var(--success-color);
 }
 
 .edit-task-form > button:hover {

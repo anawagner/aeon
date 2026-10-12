@@ -19,3 +19,12 @@
 .project {
   padding: 0.5rem 0.5rem 0.5rem 2rem;
 }
+
+.add-project {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0.25rem;
+}
+.add-project > input {
+  border-bottom: 1px solid var(--control-border);
+}

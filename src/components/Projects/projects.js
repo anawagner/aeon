@@ -13,12 +13,6 @@ const Projects = () => {
     addProjectLink(`#${project.id}`, project.name, projectNavigation);
   });
 
-  const addNew = addProjectLink(
-    `#my-missions/`,
-    '+ New Project',
-    projectNavigation
-  );
-  addNew.classList.add('add-new');
   return projectNavigation;
 };
 
@@ -34,4 +28,5 @@ const addProjectLink = (uri, label, parent) => {
   parent.appendChild(link);
   return div;
 };
+
 export { Projects };

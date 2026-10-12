@@ -11,6 +11,7 @@ import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
 import { editTaskPopover } from './components/EditTask/editTask.js';
 import { getTask, updateTask } from './api/taskApi.js';
+import { createProject } from './api/projectApi.js';
 
 function main(initialHash) {
   initializeData(tasks, projects);
@@ -20,8 +21,6 @@ function main(initialHash) {
   nav.append(Projects());
 
   const div = document.querySelector('div#tasks');
-  const addTaskForm = document.querySelector('form#add-task');
-  const taskInput = document.querySelector('input#todo-input');
 
   if (initialHash) {
     selectedProject = hashToProjectId(initialHash);
@@ -29,6 +28,9 @@ function main(initialHash) {
 
   renderList(selectedProject, div);
 
+  /* ADD NEW TASK */
+  const addTaskForm = document.querySelector('form#add-task');
+  const taskInput = document.querySelector('input#todo-input');
   addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const action = e.submitter.value;
@@ -43,6 +45,26 @@ function main(initialHash) {
     }
   });
 
+  /* ADD NEW PROJECT */
+  const addProjectFrom = document.querySelector('form#add-project');
+  const projectInput = document.querySelector('input#project-input');
+  addProjectFrom.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const action = e.submitter.value;
+    if (action == 'cancel') {
+      projectInput.value = '';
+      return;
+    }
+    if (action == 'add' && projectInput.value) {
+      createProject({ name: projectInput.value });
+      projectInput.value = '';
+      // render projects
+      nav.innerHTML = '';
+      nav.append(Projects());
+    }
+  });
+
+  /* VIEW TASK (form) */
   div.addEventListener('click', (e) => {
     const taskBtn = e.target.closest('.view-edit');
 
@@ -58,6 +80,7 @@ function main(initialHash) {
     }
   });
 
+  /* DELETE TASK */
   div.addEventListener('click', (e) => {
     const taskBtn = e.target.closest('.action');
 
@@ -74,6 +97,7 @@ function main(initialHash) {
     }
   });
 
+  /* SAVE EDIT TASK  */
   document.addEventListener('submit', (e) => {
     if (e.target && e.target.matches('.edit-task-form')) {
       e.preventDefault();
@@ -84,7 +108,6 @@ function main(initialHash) {
 
       const newTask = {};
       for (const [key, value] of formData) {
-        console.log(`${key} : ${value}`);
         newTask[key] = value;
       }
       updateTask({ ...task, ...newTask });

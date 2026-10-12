@@ -42,3 +42,10 @@ body {
   font-family: var(--font-body);
   color: var(--text-color);
 }
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
