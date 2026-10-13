@@ -10,6 +10,7 @@ import { Projects } from './components/Projects/projects.js';
 import { getProjects } from './api/projectApi.js';
 import { TaskItem } from './components/TaskItem/taskItem.js';
 import { editTaskPopover } from './components/EditTask/editTask.js';
+import { editProjectsPopover } from './components/EditProjects/editProjects.js';
 import { getTask, updateTask } from './api/taskApi.js';
 import { createProject } from './api/projectApi.js';
 
@@ -78,6 +79,12 @@ function main(initialHash) {
     } else {
       return;
     }
+  });
+
+  /* VIEW Projects (form) */
+  const editProjectsBtn = document.querySelector('button#edit-projects');
+  editProjectsBtn.addEventListener('click', (e) => {
+    editProjectsPopover();
   });
 
   /* DELETE TASK */
